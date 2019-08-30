@@ -4,17 +4,30 @@
 	#include<string.h>
 	#include<vector>
 	#include"Log.cpp"
+	#include<iostream>
+	#include<fstream>
 	using namespace std;
 	class Logger{
 		private:
 			string nombreArchivo;
 			char usuario[20];
 			int numLog;
-			vector<Log*>logs;
+			Log logs[200];
+			int contador;
 			//opcional writer de ofstream
 		public:
-			addLog(Log*log){
-				logs.push_back(log);
+			Logger(){
+				
+			}
+			Logger(string nombreArchivo,string usuario,int numLog,int contador){
+				this->nombreArchivo=nombreArchivo;
+				setUsuario(usuario);
+				setNumLog(numLog);
+				this->contador=contador;
+				
+			}
+			addLog(Log log){
+				logs[contador++]=log;
 			}
 			string getUsuario() {
 		        return usuario;
@@ -35,10 +48,37 @@
 		    void setNumLog(int numLog) {
 		        this->numLog = numLog;
 		    }
+		    
 			~Logger(){
 			}
 			
-			
+			void alArchivo(){
+				ofstream escribir(nombreArchivo.c_str(),ios::app|ios::binary);
+				if(!escribir){
+					cout<<"\nno se puede abrir el archivo\n";
+					return;
+				}
+				//escribimos la informacion del vector
+				for(int i=0;i<contador;i++){
+					escribir.write(reinterpret_cast<char*>(&logs[i]),sizeof(logs[i]));//escribir desde el ultimo registro
+				}
+				escribir.close();
+			}
+			void delArchivo(){
+				ifstream leer(nombreArchivo.c_str(),ios::binary);
+				if(!leer){
+					cout<<"\nno se puede abrir el archivo\n";
+					return ;
+				}
+				Log log;
+				leer.read(reinterpret_cast<char*>(&log),sizeof(log));
+				cout<<usuario<<"& listar"<<endl;
+				while(!leer.eof()){
+					log.print();
+					leer.read(reinterpret_cast<char*>(&log),sizeof(log));
+				}
+				leer.close();
+			}
 		
 	};
 #endif

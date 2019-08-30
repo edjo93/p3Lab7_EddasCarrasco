@@ -2,9 +2,9 @@
 #define USEREXCEPT_CPP
 	#include<stdexcept>
 	using namespace std;
-	class UserExcept:public runtime_error{
+	class CmdError:public runtime_error{
 		public:
-			UserExcept(char*mensaje):runtime_error(mensaje){
+			CmdError(char*mensaje):runtime_error(mensaje){
 				
 			}
 	};

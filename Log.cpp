@@ -2,6 +2,7 @@
 #define LOG_CPP
 	#include<string>
 	#include<string.h>
+	#include<iostream>
 	using namespace std;
 	class Log{
 		private:
@@ -9,6 +10,14 @@
 			char comando[20];
 			int numLog;
 		public:
+			Log(){
+				
+			}
+			Log(string usuario,string comando,int numLog){
+				setUsuario(usuario);
+				setComando(comando);
+				setNumLog(numLog);
+			}
 			string getUsuario() {
 		        return usuario;
 		    }
@@ -40,6 +49,9 @@
 		    void setNumLog(int numLog) {
 		        this->numLog = numLog;
 		    }
+		    void print(){
+		    	cout<<"num: "<<numLog<<" usuario: "<<usuario<<" cmd: "<<comando<<endl;
+			}
 			~Log(){
 				
 			}	
