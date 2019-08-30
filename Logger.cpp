@@ -53,7 +53,7 @@
 			}
 			
 			void alArchivo(){
-				ofstream escribir(nombreArchivo.c_str(),ios::app|ios::binary);
+				ofstream escribir(nombreArchivo.c_str(),ios::binary);
 				if(!escribir){
 					cout<<"\nno se puede abrir el archivo\n";
 					return;
@@ -62,6 +62,7 @@
 				for(int i=0;i<contador;i++){
 					escribir.write(reinterpret_cast<char*>(&logs[i]),sizeof(logs[i]));//escribir desde el ultimo registro
 				}
+				//limpiar el arreglo
 				escribir.close();
 			}
 			void delArchivo(){

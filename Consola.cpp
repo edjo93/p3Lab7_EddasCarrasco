@@ -35,7 +35,6 @@
 						logger->delArchivo();
 						logger->addLog(Log(usuario,comando,numLog));
 					}else if(comando=="cd"){
-						
 						cout<<"cd";
 						logger->addLog(Log(usuario,comando,numLog));
 					}else if(comando=="exit"){
