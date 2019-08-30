@@ -29,6 +29,7 @@
 				while(true){
 					cout<<"\ncomando<exit para salir>: ";
 					cin>>comando;
+					
 					if(comando=="listar"){
 						logger->alArchivo();
 						logger->delArchivo();
