@@ -42,6 +42,7 @@
 						logger->addLog(Log(usuario,comando,numLog));
 						break;
 					}else{
+						
 						logger->addLog(Log(usuario,comando,numLog));
 						try
 						{
